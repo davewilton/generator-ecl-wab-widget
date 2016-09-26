@@ -19,6 +19,7 @@ var DojoWidgetGenerator = yeoman.generators.Base.extend({
     notifier.notify();
     if(notifier.update){
       console.log(chalk.red('Update available: ${notifier.update.latest}'));
+      console.log(notifier.update);
     }
 
     // replace it with a short and sweet description of your generator
