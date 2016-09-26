@@ -15,12 +15,8 @@ var DojoWidgetGenerator = yeoman.generators.Base.extend({
     console.log(this.yeoman);
 
     //check fot updates
-    var notifier = updateNotifier({pkg: pkg});
-    notifier.notify();
-    if(notifier.update){
-      console.log(chalk.red('Update available: ${notifier.update.latest}'));
-      console.log(notifier.update);
-    }
+    updateNotifier({pkg: pkg, updateCheckInterval: 10000}).notify({defer: false});
+
 
     // replace it with a short and sweet description of your generator
     console.log(chalk.magenta('Welcome to the ecl-wab-widget generator.'));
