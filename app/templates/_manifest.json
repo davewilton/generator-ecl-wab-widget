@@ -1,0 +1,24 @@
+{
+  "name": "<%= widgetName %>",
+  "label": "<%= widgetName %>",
+  "2D": true,
+  "platform": "HTML",
+  "version": "0.0.1",
+  "wabVersion": "2.0",
+  "author": "Exprodat",
+  "description": "<%= description %>",
+  "copyright": "Exprodat",
+  "license": "Not for redistribution",
+  "properties": {
+    "inPanel": <%= inPanel %>,
+    "hasLocale": <%= hasLocale %>,
+    "hasStyle": <%= hasStyle %>,
+    "hasConfig": <%= hasConfig %>,
+    "hasUIFile": <%= hasUIFile %>,
+    "hasSettingPage": <%= hasSettingPage %>,
+    "hasSettingUIFile": <%= hasSettingUIFile %>,
+    "hasSettingLocale": <%= hasSettingLocale %>,
+    "hasSettingStyle": <%= hasSettingStyle %>,
+    "IsController": false
+  }
+}
