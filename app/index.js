@@ -2,6 +2,8 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var dasherize = require('underscore.string/dasherize');
+var updateNotifier = require('update-notifier');
+var pkg = require('../package.json');
 
 var DojoWidgetGenerator = yeoman.generators.Base.extend({
   askFor: function () {
@@ -11,6 +13,13 @@ var DojoWidgetGenerator = yeoman.generators.Base.extend({
 
     // have Yeoman greet the user
     console.log(this.yeoman);
+
+    //check fot updates
+    var notifier = updateNotifier({pkg: pkg});
+    notifier.notify();
+    if(notifier.update){
+      console.log(chalk.red('Update available: ${notifier.update.latest}'));
+    }
 
     // replace it with a short and sweet description of your generator
     console.log(chalk.magenta('Welcome to the ecl-wab-widget generator.'));
