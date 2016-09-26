@@ -1,10 +1,10 @@
 {
   "name": "generator-ecl-wab-widget",
-  "version": "0.1.4",
+  "version": "0.1.1",
   "description": "Yeoman generator for creating Esri WebApp Builder widgets",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "davewilton/generator-ecl-wab-widge",
+  "repository": "davewilton/generator-ecl-wab-widget",
   "author": {
     "name": "David Wilton",
     "email": "djwilton@gmail.com",
