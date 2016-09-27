@@ -1,9 +1,7 @@
 /*
  * Licensed under the MIT license.
  */
-
-
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         bump: {
@@ -13,6 +11,5 @@ module.exports = function(grunt) {
             }
         }
     });
-
     grunt.loadNpmTasks('grunt-bump');
 };

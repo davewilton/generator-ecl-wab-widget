@@ -12,8 +12,7 @@ import Module = require("./<%= subWidgetName %>/<%= subWidgetName %>");
 var clazz = dojoDeclare([BaseWidget], {
 
     // description:
-    //    
-
+    // <%= description %>
     baseClass: "<%= baseClass %>",
 
     postCreate: function() {

@@ -6,6 +6,7 @@ declare var nls: any;
 
 //dojo
 import dojoDeclare = require("dojo/_base/declare");
+import lang = require("dojo/_base/lang");
 
 //dijit
 import WidgetBase = require("dijit/_WidgetBase");
@@ -23,19 +24,19 @@ interface I<%=subWidgetName%> {
 var clazz = dojoDeclare<I<%=subWidgetName%>>([WidgetBase, TemplatedMixin<% if(widgetsInTemplate) { %>, WidgetsInTemplateMixin<% }%>], {
 
     // description:
-    //    <%= description %>
+    // <%= description %>
 	
     <% if(widgetsInTemplate) { %>templateString: template,<% }%>
-    baseClass: '<%= _.dasherize(widgetName).slice(1) %>',
+    baseClass: '<%= baseClass %>',
     nls: nls,
 
     constructor(options: any) {
+        lang.mixin(options);
     },
 
     startup: function (args) {
         //Not allowed in option strict this.inherited(arguments);
-        <% if(widgetsInTemplate) { %>WidgetsInTemplateMixin.prototype.startup.call(this, args);<% }
-		else { %>TemplatedMixin.prototype.startup.call(this, args);<%}%>
+        WidgetBase.prototype.startup.call(this, args);
 
         var self: I<%=subWidgetName%> = this;
         console.log(self.baseClass + '::startup', args);

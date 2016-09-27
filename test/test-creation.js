@@ -1,97 +1,138 @@
-/*global describe, beforeEach, it */
+
 'use strict';
 var path = require('path');
-var helpers = require('yeoman-generator').test;
+var helpers = require('yeoman-test');
+var assert = require('yeoman-assert');
 
-describe('generator-ecl-wab-widget', function () {
+var testPath = path.join(__dirname, 'temp');
 
-  var expectedFiles;
+var expectedFiles = [
+  //the main widget
+  'myTestWidget/Widget.ts',
+  'myTestWidget/manifest.json',
+  'myTestWidget/config.json',
+  'myTestWidget/images/icon.png',
 
-  before(function () {
-    expectedFiles = [
-      //the main widget
-      'myTestWidget/Widget.ts',
-      'myTestWidget/manifest.json',
-      'myTestWidget/config.json',
-      'myTestWidget/images/icon.png',
-      
-      // add files you expect to exist here.
-      'myTestWidget/myTest/myTest.ts',
-      'myTestWidget/myTest/nls/strings.js',
-      'myTestWidget/myTest/templates/myTest.html',
-      'myTestWidget/myTest/tests/tests.css',
-      'myTestWidget/myTest/tests/myTestTest.html',
-      'myTestWidget/myTest/tests/spec/myTestSpec.ts',
-      'myTestWidget/myTest/resources/myTest.css'
-    ];
+  // add files you expect to exist here.
+  'myTestWidget/myTest/myTest.ts',
+  'myTestWidget/myTest/nls/strings.js',
+  'myTestWidget/myTest/templates/myTest.html',
+  'myTestWidget/myTest/tests/tests.css',
+  'myTestWidget/myTest/tests/myTestTest.html',
+  'myTestWidget/myTest/tests/spec/myTestSpec.ts',
+  'myTestWidget/myTest/resources/myTest.css'
+];
+
+describe('default run', function () {
+
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(testPath)
+      .withPrompts({
+        'widgetName': 'myTestWidget',
+        'description': 'test description',
+        'widgetsInTemplate': true
+      })
+      .on('end', done);
   });
 
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-      if (err) {
-        return done(err);
-      }
-
-      this.app = helpers.createGenerator('ecl-wab-widget:app', [
-        '../../app'
-      ]);
-      done();
-    }.bind(this));
+  it('creares all the expected files', function () {
+    assert.file(expectedFiles);
   });
 
-  it('creates expected files and defaults to no map', function (done) {
-
-    helpers.mockPrompt(this.app, {
-      'widgetName': 'myTestWidget',
-      'description': 'test description',
-      'widgetsInTemplate': true
-    });
-
-    this.app.options['skip-install'] = true;
-    this.app.run({}, function () {
-      helpers.assertFile(expectedFiles);
-      // by default, don't include a map in the test page
-      helpers.assertNoFileContent('myTestWidget/myTest/tests/myTestTest.html', /map\W?=/);
-      done();
-    });
+  it('creates a ts file without WidgetsInTemplateMixin', function () {
+    assert.fileContent(path.join(testPath, 'myTestWidget/myTest/myTest.ts'), /WidgetsInTemplateMixin/);
   });
-
-  it('creates an empty map with new Map()', function (done) {
-
-    helpers.mockPrompt(this.app, {
-      'widgetName': 'myTestWidget',
-      'description': 'test description',
-      'widgetsInTemplate': true,
-      'testPageMap': 'Empty map - i.e. new Map()'
-    });
-
-    this.app.options['skip-install'] = true;
-    this.app.run({}, function () {
-      helpers.assertFile(expectedFiles);
-      // create empty map in the test page
-      helpers.assertFileContent('myTestWidget/myTest/tests/myTestTest.html', /map\W?=\W?new Map\(/);
-      done();
-    });
-  });
-
-  it('creates a map from a web map', function (done) {
-
-    helpers.mockPrompt(this.app, {
-      'widgetName': 'myTestWidget',
-      'description': 'test description',
-      'widgetsInTemplate': true,
-      'testPageMap': 'Web map - i.e. arcgisUtils.createMap()'
-    });
-
-    this.app.options['skip-install'] = true;
-    this.app.run({}, function () {
-      helpers.assertFile(expectedFiles);
-      // create empty map in the test page
-      helpers.assertFileContent('myTestWidget/myTest/tests/myTestTest.html', /map\W?=\W?response\.map;/);
-      done();
-    });
-  });
-
-
-
 });
+
+describe('no map', function () {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(testPath)
+      .withPrompts({
+        'widgetName': 'myTestWidget',
+        'description': 'test description',
+        'widgetsInTemplate': true,
+        testPageMap: 'No map'
+      })
+      .on('end', done);
+  });
+
+  it('creares all the expected files', function () {
+    assert.file(expectedFiles);
+  });
+
+
+  it('creates a template file has no map', function () {
+    assert.noFileContent(path.join(testPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=/);
+  });
+});
+
+describe('new Map()', function () {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(testPath)
+      .withPrompts({
+        'widgetName': 'myTestWidget',
+        'description': 'test description',
+        'widgetsInTemplate': true,
+        testPageMap: 'Empty map - i.e. new Map()'
+      })
+      .on('end', done);
+  });
+
+  it('creares all the expected files', function () {
+    assert.file(expectedFiles);
+  });
+
+
+  it('creates a template file with new Map()', function () {
+    assert.fileContent(path.join(testPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=\W?new Map\(/);
+  });
+});
+
+describe('arcgisUtils.createMap()', function () {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(testPath)
+      .withPrompts({
+        'widgetName': 'myTestWidget',
+        'description': 'test description',
+        'widgetsInTemplate': true,
+        testPageMap: 'Web map - i.e. arcgisUtils.createMap()'
+      })
+      .on('end', done);
+  });
+
+  it('creares all the expected files', function () {
+    assert.file(expectedFiles);
+  });
+
+  it('creates a template file with arcgisUtils.createMap()', function () {
+    assert.fileContent(path.join(testPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=\W?response\.map;/);
+  });
+});
+
+
+describe('No Widgets in template', function () {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(testPath)
+      .withPrompts({
+        'widgetName': 'myTestWidget',
+        'description': 'test description',
+        'widgetsInTemplate': false,
+        testPageMap: 'Web map - i.e. arcgisUtils.createMap()'
+      })
+      .on('end', done);
+  });
+
+  it('creares all the expected files', function () {
+    assert.file(expectedFiles);
+  });
+
+  it('creates a ts file without WidgetsInTemplateMixin', function () {
+    assert.noFileContent(path.join(testPath, 'myTestWidget/myTest/myTest.ts'), /WidgetsInTemplateMixin/);
+  });
+});
+

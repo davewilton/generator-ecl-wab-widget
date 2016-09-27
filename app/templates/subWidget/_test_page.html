@@ -8,9 +8,9 @@
     <%= widgetName %> Tests</title>
   <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/css/esri.css">
   <style>
-    @import url('tests.css');
-    @import url('../resources/<%= subWidgetName %>.css');
-    /* override default styles here */
+      @import url('tests.css');
+      @import url('../resources/<%= subWidgetName %>.css');
+     /* override default styles here */
   </style>
 </head>
 
@@ -46,24 +46,21 @@
         var map;
 
         require([
-          <% if (testPageMap === 1) { %>
-          'esri/map',
-          <% } else if (testPageMap === 2) { %>
-          'esri/arcgis/utils',
-          <% } %>
-            testsUrl + '../<%= subWidgetName %>.js',
-            'dojo/domReady!'
+           <%_ if (testPageMap === 1) { %>'esri/map', <% } 
+          else if (testPageMap === 2) { %>'esri/arcgis/utils',<% } _%>
+           testsUrl + '../<%= subWidgetName %>.js',
+           'dojo/text!' + testsUrl + '../../config.json',
+           'dojo/domReady!'
         ], function(
-          <% if (testPageMap === 1) { %>
-          Map,
-          <% } else if (testPageMap === 2) { %>
-          arcgisUtils,
-          <% } %>
-          Module
+           <%_ if (testPageMap === 1) { %>Map,<% } else if (testPageMap === 2) { %>arcgisUtils,<% } _%>
+           Module,
+           config
         ) {
 
-
-          <% if (testPageMap) { %>
+          var inArgs = {};
+           //read the default config file
+          inArgs.config = JSON.parse(config);
+          <%_ if (testPageMap) { _%>
             // init map
             var mapOptions = {
                 basemap: 'topo',
@@ -71,9 +68,19 @@
                 zoom: 13,
                 sliderStyle: 'small'
             };
-            <% if (testPageMap === 1) { %>
+          <%_ } _%>
+
+          <%_ if (testPageMap === 1) { _%>
             map = new Map('map', mapOptions);
-            <% } else if (testPageMap === 2) { %>
+            // init widget
+            map.on('load', function(){
+              inArgs.map = map;
+              widgetUnderTest = new Module(inArgs, 'widgetNode');
+              widgetUnderTest.startup();
+            })
+         <%_ } _%>
+
+         <%_ if (testPageMap === 2) { %>
             // this web map id is a placeholder
             // with only the topo basemap
             // replace it with the id of your web map
@@ -81,21 +88,18 @@
             arcgisUtils.createMap(webMapItemID, 'map', {
               mapOptions: mapOptions
             }).then(function(response) {
-              map = response.map;
+              inArgs.map = response.map;
+              // init widget
+              widgetUnderTest = new Module(inArgs, 'widgetNode');
+              widgetUnderTest.startup();
             });
-            <% } %>
-          <% } %>
-
-            
-              <% if (testPageMap > 0) { %>
-            // init widget
-            widgetUnderTest = new Module({map: map}, 'widgetNode');
-            widgetUnderTest.startup();
-             <% } else { %>
-            // init widget
-            widgetUnderTest = new Module({}, 'widgetNode');
-            widgetUnderTest.startup();
-               <% } %>
+         <% } _%>
+     
+            <%_ if (testPageMap === 0) { _%>
+              // init widget
+              widgetUnderTest = new Module(inArgs, 'widgetNode');
+              widgetUnderTest.startup();
+            <%_ } _%>
         });
     </script>
 </body>
