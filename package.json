@@ -35,7 +35,9 @@
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-bump": "0.0.14",
-    "mocha": "*"
+    "mocha": "*",
+    "yeoman-assert": "^2.2.1",
+    "yeoman-test": "^1.5.1"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
