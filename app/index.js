@@ -4,26 +4,23 @@ var chalk = require('chalk');
 var dasherize = require('underscore.string/dasherize');
 var updateNotifier = require('update-notifier');
 var pkg = require('../package.json');
-var trans = ('./transformer');
 var yeoman = require('yeoman-generator');
 var prettify = require('gulp-jsbeautifier');
+var yosay = require('yosay');
 
 var DojoWidgetGenerator = yeoman.Base.extend({
 
   prompting: function () {
-    debugger;
+
     var done = this.async();
     var testPageMapChoices = ['No map', 'Empty map - i.e. new Map()', 'Web map - i.e. arcgisUtils.createMap()'];
 
-    // have Yeoman greet the user
-    console.log(this.yeoman);
+    // Have Yeoman greet the user.
+    this.log(yosay('Welcome to the ecl-wab-widget generator!'));
+    this.log(chalk.yellow('It is best to run this generator within the "Widgets" folder of a WAB application'));
 
     //check fot updates
-    //updateNotifier({pkg: pkg, updateCheckInterval: 60000}).notify(); //checks once an hour
-
-    // replace it with a short and sweet description of your generator
-    console.log(chalk.magenta('Welcome to the ecl-wab-widget generator.'));
-    console.log(chalk.green('It is best to run this generator within the "Widgets" folder of a WAB application'));
+    updateNotifier({pkg: pkg, updateCheckInterval: 60000}).notify(); //checks once an hour
 
     var prompts = [{
       name: 'widgetName',

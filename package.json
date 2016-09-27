@@ -27,10 +27,11 @@
   ],
   "dependencies": {
     "chalk": "*",
+    "gulp-jsbeautifier": "^2.0.3",
     "underscore.string": "^3.3.4",
     "update-notifier": "^1.0.2",
     "yeoman-generator": "^0.24.1",
-    "gulp-jsbeautifier": "^2.0.3"
+    "yosay": "^1.2.0"
   },
   "devDependencies": {
     "grunt": "~0.4",

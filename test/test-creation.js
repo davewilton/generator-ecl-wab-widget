@@ -127,7 +127,7 @@ describe('No Widgets in template', function () {
       .on('end', done);
   });
 
-  it('creares all the expected files', function () {
+  it('creates all the expected files', function () {
     assert.file(expectedFiles);
   });
 
