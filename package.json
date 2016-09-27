@@ -29,13 +29,12 @@
     "chalk": "*",
     "underscore.string": "^3.3.4",
     "update-notifier": "^1.0.2",
-    "yeoman-generator": "^0.24.1"
+    "yeoman-generator": "^0.24.1",
+    "gulp-jsbeautifier": "^2.0.3"
   },
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-bump": "0.0.14",
-    "gulp-html-prettify": "0.0.1",
-    "gulp-jsbeautifier": "^2.0.3",
     "mocha": "*"
   },
   "peerDependencies": {
