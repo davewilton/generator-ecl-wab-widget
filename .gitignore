@@ -1,3 +1,4 @@
 node_modules/
 temp/
 *.sublime-workspace
+npm-debug.log
