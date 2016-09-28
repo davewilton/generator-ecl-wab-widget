@@ -42,23 +42,26 @@ $ yo ecl-wab-widget
 
 A few opinionated files will be created. If you created a widget called `test` in the `app` folder, the following files will be created for you.
 
-The WAB Widget
+**The WAB Widget** - most of our custom code will not be placed here
+```
    create coordinateReadoutWidget\Widget.ts
    create coordinateReadoutWidget\config.json
    create coordinateReadoutWidget\images\icon.png
    create coordinateReadoutWidget\manifest.json
-   
-The pure dojo widget - this is where development of the custom functionality will take place
+```
+**The pure dojo widget** - this is where development of the custom functionality will take place
+```
    create coordinateReadoutWidget\coordinateReadout\coordinateReadout.ts
    create coordinateReadoutWidget\coordinateReadout\templates\coordinateReadout.html
    create coordinateReadoutWidget\coordinateReadout\nls\strings.js
-
-The test files. Includes a Jasmine Spec (TypeScript) for writing tests and a test page for rapid testing during development
+```
+**The test files** - Includes a Jasmine Spec (TypeScript) for writing tests and a test page for rapid testing during development
+```
    create coordinateReadoutWidget\coordinateReadout\tests\tests.css
    create coordinateReadoutWidget\coordinateReadout\tests\coordinateReadoutTest.html
    create coordinateReadoutWidget\coordinateReadout\tests\spec\coordinateReadoutSpec.ts
    create coordinateReadoutWidget\coordinateReadout\resources\coordinateReadout.css
-
+```
 The widgets assume that a TypeScript defintion file (tsd.d.ts) is stored within the root of the WAB project (next to the index page). This includes definitions for:
 
 * [Dojo Typings] (https://github.com/dojo/typings)
@@ -72,7 +75,9 @@ A sample tsd.d.ts is stored within the docs folder.
 Dojo 1 was not written with TypeScript in mind so there are some caveats to using it. The type of the object literal created by (dojo declare)[http://dojotoolkit.org/reference-guide/1.10/dojo/_base/declare.html#dojo-base-declare] is of type any. Therefore using 'this' will not provide intelisense when writing within the widget.
 This is overcome by the use of an interface which is used to cast this into a typed object:
 
-   var self: IWidgetInterface = this;
+```TypeScript
+var self: IWidgetInterface = this;
+```
 
 The interface is also exposed to other modules using the widget.
 
