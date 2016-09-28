@@ -2,8 +2,6 @@
 
 > [Yeoman](http://yeoman.io) generator to create custom Dojo widgets for [Esri WebApp Builder](https://developers.arcgis.com/web-appbuilder/) applications.
 
-**Not to be confused with [Esri/generator-esri-appbuilder-js](http://github.com/Esri/generator-esri-appbuilder-js) which scaffolds out widgets specifically for the ArcGIS Web AppBuilder**
-
 ## About
 
 This generator scaffolds out the boilerplate files that are need each time you create a new custom WebApp Builder widget. 
@@ -37,7 +35,7 @@ $ npm install -g generator-ecl-wab-widget
 
 ### Running the Generator
 
-Navigate to your application's widgets folder and run the following at the command line:
+Navigate to your application's **widgets** folder and run the following at the command line:
 
 ```
 $ yo ecl-wab-widget
