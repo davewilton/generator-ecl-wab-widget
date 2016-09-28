@@ -1,4 +1,4 @@
-# generator-esri-widget [![Build Status](https://travis-ci.org/davewilton/generator-ecl-wab-widget.svg?branch=master)](https://travis-ci.org/davewilton/generator-ecl-wab-widget)
+# generator-ecl-wab-widget [![Build Status](https://travis-ci.org/davewilton/generator-ecl-wab-widget.svg?branch=master)](https://travis-ci.org/davewilton/generator-ecl-wab-widget)
 
 > [Yeoman](http://yeoman.io) generator to create custom Dojo widgets for [Esri WebApp Builder](https://developers.arcgis.com/web-appbuilder/) applications.
 
