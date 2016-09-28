@@ -45,16 +45,20 @@ var DojoWidgetGenerator = yeoman.Base.extend({
     return this.prompt(prompts).then(function (props) {
       this.props = props;
 
+      this.props.widgetName = props.widgetName.toString().trim();
+      if(!this.props.widgetName.toLowerCase().endsWith('widget')) {
+        this.props.widgetName += 'Widget';
+      }
+      this.props.subWidgetName = this.props.widgetName.replace('Widget', '');
+      this.props.baseClass = dasherize(this.props.widgetName).replace(/^-/, '');
+      this.props.widgetTitle = this.props.widgetName;
+
       this.props.description = props.description;
       this.props.path = props.widgetName + '/';
 
       this.props.widgetsInTemplate = props.widgetsInTemplate;
       this.props.testPageMap = testPageMapChoices.indexOf(props.testPageMap);
 
-      this.props.subWidgetName = this.props.widgetName.replace('Widget', '');
-      this.props.baseClass = dasherize(this.props.widgetName).replace(/^-/, '');
-      this.props.widgetTitle = this.widgetName;
-      
       this.props.inPanel = true; // developer can set this layer
       this.props.hasConfig = true; //we will always require config of some form.
       this.props.hasLocale = false; // Our sub widget will contain the nls

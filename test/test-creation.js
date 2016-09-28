@@ -134,5 +134,44 @@ describe('No Widgets in template', function () {
   it('creates a ts file without WidgetsInTemplateMixin', function () {
     assert.noFileContent(path.join(testPath, 'myTestWidget/myTest/myTest.ts'), /WidgetsInTemplateMixin/);
   });
+
+});
+
+describe('Widget name with spaces', function () {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(testPath)
+      .withPrompts({
+        'widgetName': ' myTestWidget ',
+        'description': 'test description',
+        'widgetsInTemplate': true,
+        testPageMap: 'Web map - i.e. arcgisUtils.createMap()'
+      })
+      .on('end', done);
+  });
+
+  it('creates all the expected files', function () {
+    assert.file(expectedFiles);
+  });
+
+});
+
+describe('Widget name must end in Widget', function () {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(testPath)
+      .withPrompts({
+        'widgetName': ' myTest ',
+        'description': 'test description',
+        'widgetsInTemplate': true,
+        testPageMap: 'Web map - i.e. arcgisUtils.createMap()'
+      })
+      .on('end', done);
+  });
+
+  it('creates all the expected files', function () {
+    assert.file(expectedFiles);
+  });
+  
 });
 

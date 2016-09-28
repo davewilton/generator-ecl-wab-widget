@@ -3,8 +3,10 @@ import WidgetUnderTest = require("widgets/<%= path %><%= subWidgetName %>/<%= su
 import domConstruct = require("dojo/dom-construct");
 
 
-describe('widgets/<%= path %><%= subWidgetName %>', () => {
+describe("widgets/<%= path %><%= subWidgetName %>", () => {
+    /* tslint:disable */
     var widget = new WidgetUnderTest();
+    /* tslint:enable */
 
     beforeEach(() => {
         widget = new WidgetUnderTest({}, domConstruct.create("div", null, document.body));
@@ -14,7 +16,7 @@ describe('widgets/<%= path %><%= subWidgetName %>', () => {
         widget.destroy();
     });
 
-    it("should create a <%= subWidgetName %> widget", function () {
+    it("should create a <%= subWidgetName %> widget", function (): void {
         expect(widget).toEqual(jasmine.any(WidgetUnderTest));
     });
 

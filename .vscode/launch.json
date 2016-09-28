@@ -5,10 +5,10 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot} npm",
+            "program": "C:/Users/dwilton/AppData/Roaming/npm/node_modules/yo/lib/cli.js",
             "stopOnEntry": false,
             "args": [
-                 "test"
+                 "ecl-wab-widget"
             ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": null,

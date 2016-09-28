@@ -2,3 +2,6 @@ node_modules/
 temp/
 *.sublime-workspace
 npm-debug.log
+.vscode/launch.json
+.vscode/launch.json
+.vscode/launch.json
