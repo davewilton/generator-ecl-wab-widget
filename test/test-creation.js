@@ -26,10 +26,10 @@ var expectedFiles = [
 
 describe('generator', function () {
 
+  this.timeout(15000);
+
   before(function (done) {
-    del([testPath]).then(function () {
-      done();
-    });
+    del([testPath + '**/*']).then(function () { done(); });
   });
 
   it('clears out the directory', function () {
@@ -37,10 +37,10 @@ describe('generator', function () {
   });
 
   describe('default run', function () {
-
+    var tempPath = testPath + '/1';
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .inDir(testPath)
+        .inDir(tempPath)
         .withPrompts({
           'widgetName': 'myTestWidget',
           'description': 'test description',
@@ -54,14 +54,16 @@ describe('generator', function () {
     });
 
     it('creates a ts file without WidgetsInTemplateMixin', function () {
-      assert.fileContent(path.join(testPath, 'myTestWidget/myTest/myTest.ts'), /WidgetsInTemplateMixin/);
+      assert.fileContent(path.join(tempPath, 'myTestWidget/myTest/myTest.ts'), /WidgetsInTemplateMixin/);
     });
+
   });
 
   describe('no map', function () {
+    var tempPath = testPath + '/2';
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .inDir(testPath)
+        .inDir(tempPath)
         .withPrompts({
           'widgetName': 'myTestWidget',
           'description': 'test description',
@@ -71,20 +73,20 @@ describe('generator', function () {
         .on('end', done);
     });
 
-    it('creares all the expected files', function () {
+    it('creates all the expected files', function () {
       assert.file(expectedFiles);
     });
 
-
     it('creates a template file has no map', function () {
-      assert.noFileContent(path.join(testPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=/);
+      assert.noFileContent(path.join(tempPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=/);
     });
   });
 
   describe('new Map()', function () {
+    var tempPath = testPath + '/3';
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .inDir(testPath)
+        .inDir(tempPath)
         .withPrompts({
           'widgetName': 'myTestWidget',
           'description': 'test description',
@@ -100,14 +102,15 @@ describe('generator', function () {
 
 
     it('creates a template file with new Map()', function () {
-      assert.fileContent(path.join(testPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=\W?new Map\(/);
+      assert.fileContent(path.join(tempPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=\W?new Map\(/);
     });
   });
 
   describe('arcgisUtils.createMap()', function () {
+    var tempPath = testPath + '/4';
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .inDir(testPath)
+        .inDir(tempPath)
         .withPrompts({
           'widgetName': 'myTestWidget',
           'description': 'test description',
@@ -122,15 +125,15 @@ describe('generator', function () {
     });
 
     it('creates a template file with arcgisUtils.createMap()', function () {
-      assert.fileContent(path.join(testPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=\W?response\.map;/);
+      assert.fileContent(path.join(tempPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=\W?response\.map;/);
     });
   });
 
-
   describe('No Widgets in template', function () {
+    var tempPath = testPath + '/5';
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .inDir(testPath)
+        .inDir(tempPath)
         .withPrompts({
           'widgetName': 'myTestWidget',
           'description': 'test description',
@@ -145,15 +148,16 @@ describe('generator', function () {
     });
 
     it('creates a ts file without WidgetsInTemplateMixin', function () {
-      assert.noFileContent(path.join(testPath, 'myTestWidget/myTest/myTest.ts'), /WidgetsInTemplateMixin/);
+      assert.noFileContent(path.join(tempPath, 'myTestWidget/myTest/myTest.ts'), /WidgetsInTemplateMixin/);
     });
 
   });
 
   describe('Widget name with spaces', function () {
+    var tempPath = testPath + '/6';
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .inDir(testPath)
+        .inDir(tempPath)
         .withPrompts({
           'widgetName': ' myTestWidget ',
           'description': 'test description',
@@ -170,9 +174,10 @@ describe('generator', function () {
   });
 
   describe('Widget name must end in Widget', function () {
+    var tempPath = testPath + '/7';
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
-        .inDir(testPath)
+        .inDir(tempPath)
         .withPrompts({
           'widgetName': ' myTest ',
           'description': 'test description',
