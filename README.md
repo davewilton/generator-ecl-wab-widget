@@ -72,7 +72,7 @@ A sample tsd.d.ts is stored within the docs folder.
 
 ### TypeScript dojo widgets
 
-Dojo 1 was not written with TypeScript in mind so there are some caveats to using it. The type of the object literal created by (dojo declare)[http://dojotoolkit.org/reference-guide/1.10/dojo/_base/declare.html#dojo-base-declare] is of type any. Therefore using 'this' will not provide intelisense when writing within the widget.
+Dojo 1 was not written with TypeScript in mind so there are some caveats to using it. The type of the object literal created by [dojo declare](http://dojotoolkit.org/reference-guide/1.10/dojo/_base/declare.html#dojo-base-declare) is of type any. Therefore using 'this' will not provide intelisense when writing within the widget.
 This is overcome by the use of an interface which is used to cast this into a typed object:
 
 ```TypeScript
@@ -80,6 +80,8 @@ var self: IWidgetInterface = this;
 ```
 
 The interface is also exposed to other modules using the widget.
+
+I'm sure there are other ways of approaching this, please let me know if you have another/better way.
 
 ## License
 
