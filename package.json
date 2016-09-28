@@ -38,6 +38,7 @@
     "grunt": "~0.4",
     "grunt-bump": "0.0.14",
     "mocha": "*",
+    "trim": "0.0.1",
     "yeoman-assert": "^2.2.1",
     "yeoman-test": "^1.5.1"
   },
