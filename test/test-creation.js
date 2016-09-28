@@ -173,25 +173,25 @@ describe('generator', function () {
 
   });
 
-  describe('Widget name must end in Widget', function () {
-    var tempPath = testPath + '/7';
-    before(function (done) {
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(tempPath)
-        .withPrompts({
-          'widgetName': ' myTest ',
-          'description': 'test description',
-          'widgetsInTemplate': true,
-          testPageMap: 'Web map - i.e. arcgisUtils.createMap()'
-        })
-        .on('end', done);
-    });
+  // describe('Widget name must end in Widget', function () {
+  //   var tempPath = testPath + '/7';
+  //   before(function (done) {
+  //     helpers.run(path.join(__dirname, '../app'))
+  //       .inDir(tempPath)
+  //       .withPrompts({
+  //         'widgetName': ' myTest ',
+  //         'description': 'test description',
+  //         'widgetsInTemplate': true,
+  //         testPageMap: 'Web map - i.e. arcgisUtils.createMap()'
+  //       })
+  //       .on('end', done);
+  //   });
 
-    it('creates all the expected files', function () {
-      assert.file(expectedFiles);
-    });
+  //   it('creates all the expected files', function () {
+  //     assert.file(expectedFiles);
+  //   });
 
-  });
+  // });
 
 });
 
