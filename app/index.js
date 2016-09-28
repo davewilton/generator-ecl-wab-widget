@@ -45,10 +45,10 @@ var DojoWidgetGenerator = yeoman.Base.extend({
     return this.prompt(prompts).then(function (props) {
       this.props = props;
 
-      this.props.widgetName = props.widgetName.toString().trim();
-      if(!this.props.widgetName.toLowerCase().endsWith('widget')) {
-        this.props.widgetName += 'Widget';
-      }
+      this.props.widgetName = props.widgetName; //.toString().trim();
+      //if(!this.props.widgetName.toLowerCase().endsWith('widget')) {
+     //   this.props.widgetName += 'Widget';
+     // }
       this.props.subWidgetName = this.props.widgetName.replace('Widget', '');
       this.props.baseClass = dasherize(this.props.widgetName).replace(/^-/, '');
       this.props.widgetTitle = this.props.widgetName;
