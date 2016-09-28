@@ -21,7 +21,7 @@ var DojoWidgetGenerator = yeoman.Base.extend({
     this.log(chalk.yellow('It is best to run this generator within the "Widgets" folder of a WAB application'));
 
     //check fot updates
-    updateNotifier({ pkg: pkg, updateCheckInterval: 60000 }).notify(); //checks once an hour
+    updateNotifier({ pkg: pkg, updateCheckInterval: 10000 }).notify();
 
     var prompts = [{
       name: 'widgetName',
