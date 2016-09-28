@@ -49,7 +49,11 @@ var DojoWidgetGenerator = yeoman.Base.extend({
       try {
 
         this.props.widgetName = trim(props.widgetName);
-        if (!this.props.widgetName.toLowerCase().endsWith('widget')) {
+
+        var endsWith = function (str, suffix) {
+          return str.indexOf(suffix, str.length - suffix.length) !== -1;
+        };
+        if (!endsWith(this.props.widgetName.toLowerCase(), 'widget')) {
           this.props.widgetName += 'Widget';
         }
         this.props.subWidgetName = this.props.widgetName.replace('Widget', '');
@@ -139,10 +143,5 @@ var DojoWidgetGenerator = yeoman.Base.extend({
   }
 
 });
-
-//polyfill ends with
-String.prototype.endsWith = String.prototype.endsWith || function (str) {
-  return new RegExp(str + '$').test(str);
-};
 
 module.exports = DojoWidgetGenerator;

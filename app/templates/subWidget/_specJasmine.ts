@@ -10,6 +10,7 @@ describe("widgets/<%= path %><%= subWidgetName %>", () => {
 
     beforeEach(() => {
         widget = new WidgetUnderTest({}, domConstruct.create("div", null, document.body));
+        widget.startup({});
     });
 
     afterEach(() => {
