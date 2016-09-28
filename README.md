@@ -40,7 +40,7 @@ Navigate to your application's **widgets** folder and run the following at the c
 $ yo ecl-wab-widget
 ```
 
-A few opinionated files will be created. If you created a widget called `test` in the `app` folder, the following files will be created for you.
+A few opinionated files will be created. If you created a widget called `coordinateReadoutWidget` in the `widgets` folder, the following files will be created for you.
 
 **The WAB Widget** - most of our custom code will not be placed here
 ```
