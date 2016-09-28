@@ -54,7 +54,7 @@ describe('generator', function () {
     });
 
     it('creates a ts file without WidgetsInTemplateMixin', function () {
-      assert.fileContent(path.join(tempPath, 'myTestWidget/myTest/myTest.ts'), /WidgetsInTemplateMixin/);
+      assert.fileContent('myTestWidget/myTest/myTest.ts', /WidgetsInTemplateMixin/);
     });
 
   });
@@ -78,7 +78,7 @@ describe('generator', function () {
     });
 
     it('creates a template file has no map', function () {
-      assert.noFileContent(path.join(tempPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=/);
+      assert.noFileContent('myTestWidget/myTest/tests/myTestTest.html', /map\W?=/);
     });
   });
 
@@ -102,7 +102,7 @@ describe('generator', function () {
 
 
     it('creates a template file with new Map()', function () {
-      assert.fileContent(path.join(tempPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=\W?new Map\(/);
+      assert.fileContent('myTestWidget/myTest/tests/myTestTest.html', /map\W?=\W?new Map\(/);
     });
   });
 
@@ -125,7 +125,7 @@ describe('generator', function () {
     });
 
     it('creates a template file with arcgisUtils.createMap()', function () {
-      assert.fileContent(path.join(tempPath, 'myTestWidget/myTest/tests/myTestTest.html'), /map\W?=\W?response\.map;/);
+      assert.fileContent('myTestWidget/myTest/tests/myTestTest.html', /map\W?=\W?response\.map;/);
     });
   });
 
@@ -148,7 +148,7 @@ describe('generator', function () {
     });
 
     it('creates a ts file without WidgetsInTemplateMixin', function () {
-      assert.noFileContent(path.join(tempPath, 'myTestWidget/myTest/myTest.ts'), /WidgetsInTemplateMixin/);
+      assert.noFileContent('myTestWidget/myTest/myTest.ts', /WidgetsInTemplateMixin/);
     });
 
   });
@@ -173,25 +173,25 @@ describe('generator', function () {
 
   });
 
-  // describe('Widget name must end in Widget', function () {
-  //   var tempPath = testPath + '/7';
-  //   before(function (done) {
-  //     helpers.run(path.join(__dirname, '../app'))
-  //       .inDir(tempPath)
-  //       .withPrompts({
-  //         'widgetName': ' myTest ',
-  //         'description': 'test description',
-  //         'widgetsInTemplate': true,
-  //         testPageMap: 'Web map - i.e. arcgisUtils.createMap()'
-  //       })
-  //       .on('end', done);
-  //   });
+  describe('Widget name must end in Widget', function () {
+    var tempPath = testPath + '/7';
+    before(function (done) {
+      helpers.run(path.join(__dirname, '../app'))
+        .inDir(tempPath)
+        .withPrompts({
+          'widgetName': ' myTest ',
+          'description': 'test description',
+          'widgetsInTemplate': true,
+          testPageMap: 'Web map - i.e. arcgisUtils.createMap()'
+        })
+        .on('end', done);
+    });
 
-  //   it('creates all the expected files', function () {
-  //     assert.file(expectedFiles);
-  //   });
+    it('creates all the expected files', function () {
+      assert.file(expectedFiles);
+    });
 
-  // });
+  });
 
 });
 
