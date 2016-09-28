@@ -4,14 +4,13 @@
 
 ## About
 
-This generator scaffolds out the boilerplate files that are need each time you create a new custom WebApp Builder widget. 
+This generator scaffolds out the boilerplate files that are need each time you create a new custom WebApp Builder widget. The structure is designed to remove dependancy on the WAB to enable tests to be easily written and allow rapid development testing within the html test page. It creates
 
 * TypeScript Widgets.
 * Pure dojo widget inside the esri WAB BaseWidget.
 * Jasmine tests in TypeScript.
 * A test page with the dojo widget for development outside of the WAB.
 
-The structure is designed to remove dependancy on the WAB to enable tests to be easily written and allow rapid development testing within the html test page.
 
 ![Screenshot](https://raw.githubusercontent.com/davewilton/generator-ecl-wab-widget/master/docs/images/generator-interface.png)
 
