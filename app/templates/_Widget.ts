@@ -16,7 +16,7 @@ var clazz: any = dojoDeclare([BaseWidget], {
     baseClass: "<%= baseClass %>",
 
     postCreate: function(): void {
-       // not allowed in option strict this.inherited(arguments);
+      // not allowed in option strict this.inherited(arguments);
       BaseWidget.prototype.postCreate.call(arguments);
       console.log(this.baseClass + "::postCreate");
     },
@@ -27,9 +27,9 @@ var clazz: any = dojoDeclare([BaseWidget], {
         console.log(this.baseClass + "::startup");
 
         // create an instance of our widget and place on the widget dom
-         /* tslint:disable */
-        var widget = new Module({map: this.map, config: this.config}, domConstruct.create("div", null, this.domNode));
-         /* tslint:enable */
+        /* tslint:disable */
+        var widget: Module.I<%= subWidgetName %> = new Module.<%= subWidgetName %>({map: this.map, config: this.config}, domConstruct.create("div", null, this.domNode));
+        /* tslint:enable */
         widget.startup({});
 
     }

@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/css/esri.css">
   <style>
       @import url('tests.css');
-      @import url('../resources/<%= subWidgetName %>.css');
      /* override default styles here */
   </style>
 </head>
@@ -75,7 +74,7 @@
             // init widget
             map.on('load', function(){
               inArgs.map = map;
-              widgetUnderTest = new Module(inArgs, 'widgetNode');
+              widgetUnderTest = new Module.<%= subWidgetName %>(inArgs, 'widgetNode');
               widgetUnderTest.startup();
             })
          <%_ } _%>
@@ -90,14 +89,14 @@
             }).then(function(response) {
               inArgs.map = response.map;
               // init widget
-              widgetUnderTest = new Module(inArgs, 'widgetNode');
+              widgetUnderTest = new Module.<%= subWidgetName %>(inArgs, 'widgetNode');
               widgetUnderTest.startup();
             });
          <% } _%>
      
             <%_ if (testPageMap === 0) { _%>
               // init widget
-              widgetUnderTest = new Module(inArgs, 'widgetNode');
+              widgetUnderTest = new Module.<%= subWidgetName %>(inArgs, 'widgetNode');
               widgetUnderTest.startup();
             <%_ } _%>
         });

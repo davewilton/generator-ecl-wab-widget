@@ -71,6 +71,7 @@ var DojoWidgetGenerator = yeoman.Base.extend({
         this.props.hasLocale = false; // Our sub widget will contain the nls
         this.props.hasStyle = false; // Our sub widget will contain the style
         this.props.hasUIFile = false; // Our sub widget will contain the UI
+        this.props.hasSettingPage = false; // not supported at present
 
         //settings choices
         // settings
@@ -101,9 +102,9 @@ var DojoWidgetGenerator = yeoman.Base.extend({
       if (this.props.hasUIFile) {
         this._templateFile('_Widget.html', this.path + 'Widget.html');
       }
-      if (this.props.hasConfig) {
-        this._templateFile('_config.json', this.path + 'config.json');
-      }
+
+      this._templateFile('_config.json', this.path + 'config.json');
+
       if (this.props.hasStyle) {
         this._templateFile('css/_style.css', this.path + 'css/style.css');
       }
@@ -122,6 +123,7 @@ var DojoWidgetGenerator = yeoman.Base.extend({
       this._templateFile('subWidget/_template.html', this.path + subNamePath + 'templates/' + subName + '.html');
       this._templateFile('subWidget/_test_page.html', this.path + subNamePath + 'tests/' + subName + 'Test.html');
       this._templateFile('subWidget/nls/_strings.js', this.path + subNamePath + 'nls/strings.js');
+      this._templateFile('subWidget/_IConfig.ts', this.path + subNamePath + 'IConfig' + subName + '.ts');
 
       //Jasmine tests
       this._templateFile('subWidget/_specJasmine.ts', this.path + subNamePath + 'tests/spec/' + subName + 'Spec.ts');

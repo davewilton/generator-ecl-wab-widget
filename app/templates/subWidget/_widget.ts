@@ -1,8 +1,10 @@
 /// <reference path="../../../tsd.d.ts" />
 /// <amd-dependency path="dojo/text!./templates/<%=subWidgetName%>.html" name="template" />
 /// <amd-dependency path="dojo/i18n!widgets/<%=widgetName%>/<%=subWidgetName%>/nls/strings" name="nls" />
+/// <amd-dependency path="xstyle/css!./resources/<%= subWidgetName %>.css" name="style" />
 declare var template: any;
 declare var nls: any;
+declare var style: any;
 
 // dojo
 import dojoDeclare = require("dojo/_base/declare");
@@ -13,11 +15,20 @@ import WidgetBase = require("dijit/_WidgetBase");
 import TemplatedMixin = require("dijit/_TemplatedMixin");
 <% if(widgetsInTemplate) { %>import WidgetsInTemplateMixin = require("dijit/_WidgetsInTemplateMixin");<% }%>
 
+// esri
+import Map = require("esri/map");
+
+// local
+import IConfig = require("./IConfig<%= subWidgetName %>");
+
 interface I<%=subWidgetName%> {
+    // methods
     constructor(options: any): void;
     startup(args: any): void;
-    baseClass: string;
     destroy(): void;
+    // properties
+    config: IConfig;
+    baseClass: string;
     nls: any;
 }
 
@@ -43,6 +54,8 @@ var clazz = dojoDeclare<I<%=subWidgetName%>>([WidgetBase, TemplatedMixin<% if(wi
         var self: I<%=subWidgetName%> = this;
         console.log(self.baseClass + "::startup", args);
 
+        // test the config file interface
+        console.log(self.config.serviceUrl);
     },
 
     destroy: function (args: any): void {
@@ -51,4 +64,5 @@ var clazz = dojoDeclare<I<%=subWidgetName%>>([WidgetBase, TemplatedMixin<% if(wi
 
 });
 
-export = clazz;
+export {clazz as <%=subWidgetName%>};
+export {I<%=subWidgetName%> as I<%=subWidgetName%>};
