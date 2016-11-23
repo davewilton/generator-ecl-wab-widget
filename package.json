@@ -1,6 +1,6 @@
 {
   "name": "generator-ecl-wab-widget",
-  "version": "0.1.23",
+  "version": "0.1.25",
   "description": "Yeoman generator for creating Esri WebApp Builder widgets",
   "license": "MIT",
   "main": "app/index.js",
@@ -31,14 +31,14 @@
     "underscore.string": "^3.3.4",
     "update-notifier": "^1.0.2",
     "yeoman-generator": "^0.24.1",
-    "yosay": "^1.2.0"
+    "yosay": "^1.2.0",
+    "trim": "0.0.1"
   },
   "devDependencies": {
     "del": "^2.2.2",
     "grunt": "~0.4",
     "grunt-bump": "0.0.14",
     "mocha": "*",
-    "trim": "0.0.1",
     "yeoman-assert": "^2.2.1",
     "yeoman-test": "^1.5.1"
   },
