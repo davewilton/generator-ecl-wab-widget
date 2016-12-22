@@ -6,14 +6,16 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
   <title>
     <%= widgetName %> Tests</title>
-  <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/css/esri.css">
+    <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/css/esri.css"/>
+    <link rel="stylesheet" href="//js.arcgis.com/3.17/dojo/resources/dojo.css"/>
+    <link rel="stylesheet" href="//js.arcgis.com/3.17/dijit/themes/claro/claro.css" />
   <style>
       @import url('tests.css');
      /* override default styles here */
   </style>
 </head>
 
-<body>
+<body class="claro">
   <div id="map"></div>
   <div id="widgetContainer">
     <div id="widgetNode"></div>
@@ -83,6 +85,8 @@
             // this web map id is a placeholder
             // with only the topo basemap
             // replace it with the id of your web map
+            // replace below line if you are using portal
+            // arcgisUtils.arcgisUrl = "https://myserver/arcgis/sharing/rest/content/items";
             var webMapItemID = '6e03e8c26aad4b9c92a87c1063ddb0e3';
             arcgisUtils.createMap(webMapItemID, 'map', {
               mapOptions: mapOptions
