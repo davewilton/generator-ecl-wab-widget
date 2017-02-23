@@ -1,4 +1,3 @@
-/// <reference path="../../../tsd.d.ts" />
 /// <amd-dependency path="dojo/text!./templates/<%=subWidgetName%>.html" name="template" />
 /// <amd-dependency path="dojo/i18n!widgets/<%=widgetName%>/<%=subWidgetName%>/nls/strings" name="nls" />
 /// <amd-dependency path="xstyle/css!./resources/<%= subWidgetName %>.css" name="style" />
@@ -25,11 +24,12 @@ interface I<%=subWidgetName%> {
     // methods
     constructor(options: any): void;
     startup(args: any): void;
-    destroy(): void;
+    destroy(args: any): void;
     // properties
     config: IConfig;
     baseClass: string;
     nls: any;
+	templateString: string;
 }
 
  /* tslint:disable */
@@ -42,6 +42,7 @@ var clazz = dojoDeclare<I<%=subWidgetName%>>([WidgetBase, TemplatedMixin<% if(wi
     <% if(widgetsInTemplate) { %>templateString: template,<% }%>
     baseClass: "<%= baseClass %>",
     nls: nls,
+	config: null,
 
     constructor(options: any): void {
         lang.mixin(options);
