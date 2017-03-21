@@ -73,13 +73,14 @@ A sample tsd.d.ts is stored within the docs folder.
 ### TypeScript dojo widgets
 
 Dojo 1 was not written with TypeScript in mind so there are some caveats to using it. The type of the object literal created by [dojo declare](http://dojotoolkit.org/reference-guide/1.10/dojo/_base/declare.html#dojo-base-declare) is of type any. Therefore using 'this' will not provide intelisense when writing within the widget.
-This is overcome by the use of an interface which is used to cast this into a typed object:
+This is overcome by the use of an interface which is used to type this in the first argument of the functions within the object literal:
 
 ```TypeScript
-var self: IWidgetInterface = this;
+startup: function (this: IWidgetInterface, args: any): void {
 ```
 
-The interface is also exposed to other modules using the widget.
+
+The interface is also exported to other modules using the widget so they too can get intellisense. However, if you want to use the widget using declarative markup (i.e. in a html template) you must only export the widget (export = clazz) and not the interface.
 
 I'm sure there are other ways of approaching this, please let me know if you have another/better way.
 
