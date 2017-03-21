@@ -19,7 +19,7 @@ describe("widgets/<%= path %><%= subWidgetName %>", () => {
     });
 
     afterEach(() => {
-        widget.destroy();
+        widget.destroy(null);
     });
 
     it("should create a <%= subWidgetName %> widget", function (): void {

@@ -1,4 +1,3 @@
-/// <reference path="../../tsd.d.ts" />
 /// <amd-dependency path="jimu/BaseWidget" name="BaseWidget" />
 declare var BaseWidget: any; // there is no ts definition of BaseWidget yet
 

@@ -30,6 +30,7 @@ interface I<%=subWidgetName%> {
     baseClass: string;
     nls: any;
 	templateString: string;
+    map: Map;
 }
 
  /* tslint:disable */
@@ -43,20 +44,20 @@ var clazz = dojoDeclare<I<%=subWidgetName%>>([WidgetBase, TemplatedMixin<% if(wi
     baseClass: "<%= baseClass %>",
     nls: nls,
 	config: null,
+    map: null,
 
     constructor(options: any): void {
         lang.mixin(options);
     },
 
-    startup: function (args: any): void {
+    startup: function (this: I<%=subWidgetName%>, args: any): void {
         // not allowed in option strict this.inherited(arguments);
         WidgetBase.prototype.startup.call(this, args);
 
-        var self: I<%=subWidgetName%> = this;
-        console.log(self.baseClass + "::startup", args);
+        console.log(this.baseClass + "::startup", args);
 
         // test the config file interface
-        console.log(self.config.serviceUrl);
+        console.log(this.config.serviceUrl);
     },
 
     destroy: function (args: any): void {
