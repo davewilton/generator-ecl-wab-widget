@@ -22,9 +22,9 @@ import IConfig = require("./IConfig<%= subWidgetName %>");
 
 interface I<%=subWidgetName%> {
     // methods
-    constructor(options: any): void;
-    startup(args: any): void;
-    destroy(args: any): void;
+    constructor(options?: any): void;
+    startup(args?: any): void;
+    destroy(args?: any): void;
     // properties
     config: IConfig;
     baseClass: string;
@@ -33,9 +33,7 @@ interface I<%=subWidgetName%> {
     map: Map;
 }
 
- /* tslint:disable */
-var clazz = dojoDeclare<I<%=subWidgetName%>>([WidgetBase, TemplatedMixin<% if(widgetsInTemplate) { %>, WidgetsInTemplateMixin<% }%>], {
- /* tslint:enable */
+var clazz: any = dojoDeclare<I<%=subWidgetName%>>([WidgetBase, TemplatedMixin<% if(widgetsInTemplate) { %>, WidgetsInTemplateMixin<% }%>], {
 
     // description:
     // <%= description %>
@@ -46,11 +44,11 @@ var clazz = dojoDeclare<I<%=subWidgetName%>>([WidgetBase, TemplatedMixin<% if(wi
 	config: null,
     map: null,
 
-    constructor(options: any): void {
-        lang.mixin(options);
+    constructor(options?: any): void {
+        lang.mixin(this, options);
     },
 
-    startup: function (this: I<%=subWidgetName%>, args: any): void {
+    startup: function (this: I<%=subWidgetName%>, args?: any): void {
         // not allowed in option strict this.inherited(arguments);
         WidgetBase.prototype.startup.call(this, args);
 
@@ -60,7 +58,7 @@ var clazz = dojoDeclare<I<%=subWidgetName%>>([WidgetBase, TemplatedMixin<% if(wi
         console.log(this.config.serviceUrl);
     },
 
-    destroy: function (args: any): void {
+    destroy: function (args?: any): void {
         WidgetBase.prototype.destroy.call(this, args);
     }
 

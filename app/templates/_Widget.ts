@@ -5,7 +5,7 @@ declare var BaseWidget: any; // there is no ts definition of BaseWidget yet
 import dojoDeclare = require("dojo/_base/declare");
 import domConstruct = require("dojo/dom-construct");
 
-// local 
+// local
 import Module = require("./<%= subWidgetName %>/<%= subWidgetName %>");
 
 var clazz: any = dojoDeclare([BaseWidget], {
@@ -26,10 +26,13 @@ var clazz: any = dojoDeclare([BaseWidget], {
         console.log(this.baseClass + "::startup");
 
         // create an instance of our widget and place on the widget dom
-        /* tslint:disable */
-        var widget: Module.I<%= subWidgetName %> = new Module.<%= subWidgetName %>({map: this.map, config: this.config}, domConstruct.create("div", null, this.domNode));
-        /* tslint:enable */
-        widget.startup({});
+        var widgetDiv: HTMLElement = domConstruct.create("div", null, this.domNode);
+        var widget: Module.I<%= subWidgetName %> = new Module.<%= subWidgetName %>({
+            map: this.map,
+            config: this.config
+        }, widgetDiv);
+
+        widget.startup();
 
     }
 

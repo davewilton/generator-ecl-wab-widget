@@ -6,13 +6,12 @@ import domConstruct = require("dojo/dom-construct");
 
 
 describe("widgets/<%= path %><%= subWidgetName %>", () => {
-    /* tslint:disable */
+
     var widget: WidgetUnderTest.I<%= subWidgetName %>;
-    /* tslint:enable */
 
     beforeEach(() => {
         // create a sample config
-        var config = JSON.parse(ConfigJson);
+        var config: any = JSON.parse(ConfigJson);
 
         widget = new WidgetUnderTest.<%= subWidgetName %>({config: config}, domConstruct.create("div", null, document.body));
         widget.startup({});

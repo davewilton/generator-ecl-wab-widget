@@ -60,7 +60,8 @@ var DojoWidgetGenerator = yeoman.Base.extend({
         this.props.baseClass = dasherize(this.props.widgetName).replace(/^-/, '');
         this.props.widgetTitle = this.props.widgetName;
 
-        this.props.description = props.description;
+        // force lower case first letter
+        this.props.description = props.description.charAt(0).toLowerCase() + props.description.slice(1); 
         this.props.path = props.widgetName + '/';
 
         this.props.widgetsInTemplate = props.widgetsInTemplate;
@@ -73,7 +74,7 @@ var DojoWidgetGenerator = yeoman.Base.extend({
         this.props.hasUIFile = false; // Our sub widget will contain the UI
         this.props.hasSettingPage = false; // not supported at present
 
-        //settings choices
+        // settings choices
         // settings
         this.props.hasSettingPage = props.hasSettingPage;
         this.props.hasSettingUIFile = this.hasSettingPage ? (props.settingsFeatures.indexOf('hasSettingUIFile') > -1) : false;
