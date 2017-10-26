@@ -1,3 +1,44 @@
+# Depreciated
+
+## This tool has now been depreciated in favour of
+
+[generator-typescript-wab-widget](https://github.com/davewilton/generator-typescript-wab-widget/)
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 # generator-ecl-wab-widget [![Build Status](https://travis-ci.org/davewilton/generator-ecl-wab-widget.svg?branch=master)](https://travis-ci.org/davewilton/generator-ecl-wab-widget)
 
 > [Yeoman](http://yeoman.io) generator to create custom Dojo widgets for [Esri WebApp Builder](https://developers.arcgis.com/web-appbuilder/) applications.
